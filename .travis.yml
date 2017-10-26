@@ -1,8 +1,5 @@
-ghc:
-  - 7.8
-  - 8.0.2
-
-install:
-  - cabal install --only-dependencies --enable-tests
-script:
-  - cabal configure --enable-tests && cabal build && cabal test
+before_install:
+  # Download and unpack the stack executable
+  - mkdir -p ~/.local/bin
+  - export PATH=$HOME/.local/bin:$PATH
+  - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
